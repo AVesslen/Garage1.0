@@ -4,6 +4,9 @@
     {
         static void Main(string[] args)
         {
+           
+            
+            
             Test();
 
             AirPlane airPlane = new AirPlane("grey", 2, "abc123", 2);

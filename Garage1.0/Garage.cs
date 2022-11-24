@@ -17,14 +17,6 @@ namespace Garage1._0
 
         public int NoOfVehiclesParked { get; private set; }
 
-        //public int Length  //Nr of parking lots in the garage
-        //{
-        //    get 
-        //    { 
-        //        return vehicleArray.Length; 
-        //    }            
-        //}
-
         public bool IsFull
         {
             get 
@@ -39,6 +31,7 @@ namespace Garage1._0
 
         public Garage(int capacity)
         {
+            if (capacity <= 0) throw new ArgumentOutOfRangeException("The capacity needs to > 0");
             this.capacity = capacity;
             vehicleArray = new T[this.capacity];
         }
