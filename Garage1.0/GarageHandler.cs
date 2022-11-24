@@ -6,18 +6,30 @@ using System.Threading.Tasks;
 
 namespace Garage1._0
 {
-    internal class GarageHandler
+    public class GarageHandler
     {        
         private Garage<Vehicle> garage;
+        public GarageHandler()
+        {
+
+        }
        
-        internal void CreateGarage(int capacity)
+        public void CreateGarage(int capacity)
         {
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
         }
 
-        internal void ParkVehicle()
+        internal bool ParkAirplane(string color, int noOfWheels, string regNo,int numberOfEngines)
         {
-            throw new NotImplementedException();
+            AirPlane airplane = new AirPlane(color, noOfWheels, regNo, numberOfEngines);
+           if (garage.Add(airplane))
+                return true;
+           return false;
         }
+
+        //internal void garage.Add(Vehicle vehicle);
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

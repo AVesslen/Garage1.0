@@ -1,8 +1,10 @@
 ﻿using Garage1._0.UserInterface;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Garage1._0
@@ -25,18 +27,13 @@ namespace Garage1._0
         }
 
 
-        private void WelcomeUser()
-        {
-            ui.Print("Welcome to this garage application. Let's create a garage!");
-        }
 
         public void Start()
         {      
 
             bool isRunning = true;
             do
-            {
-               
+            {               
                 string input = ui.GetStringInput(ShowMainMenu());
 
                 switch (input.ToUpper())
@@ -67,37 +64,71 @@ namespace Garage1._0
             WelcomeUser();
             
             int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
-            string message="Do you want the garage to be half full of vehicles from start? (yes/no)";
-            string answer = ui.GetStringInput(message);
+            //string message="Do you want the garage to be half full of vehicles from start? (yes/no)";
+            //string answer = ui.GetStringInput(message);
             //SeedData(capacity);
             // Skapa garage 
             handler.CreateGarage(capacity);
+        }
+        private void WelcomeUser()
+        {
+            ui.Print("Welcome to this garage application. Let's create a garage!");
         }
 
         //    //Lägga till menyhelpers?
         private string ShowMainMenu()
         {
            return ("Please select what you want to do with your garage"
-            + "\n1. Park a vehicle in the garage"
-            + "\n2. See statistics of your garage"
-            + "\n3. Unpark vehicle from garage"
+            + "\n1. Park a vehicle"
+            + "\n2. See statistics"
+            + "\n3. Unpark a vehicle"
             + "\nQ. Quit the application");
         }
         private void ParkVehicle()
         {
-            string type = ui.GetStringInput("Type of vehicle: (airplane, car, bus, motorcycle or boat)");
-            if (type.ToLower() != "airplane" || type.ToLower() != "car" || type.ToLower() != "bus" || type.ToLower() != "motorcycle" || type.ToLower() != "boat")
+            //isFull?
+            bool isRunning = true;
+            do
             {
-                ui.Print("That was not a valid type");
-                return;
-            }
+            string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
+            + "\n1. Airplane"
+            + "\n2. Motorcycle"
+            + "\n3. Car"
+            + "\n4. Bus"
+            + "\n5. Boat");
 
-            string color = ui.GetStringInput("Color: ");
-            int noOfWheels = ui.GetIntInput("Number of wheels: ");
-            string regNo = ui.GetStringInput("Reg. number: ");
-            handler.ParkVehicle()
+                switch (vehicleType)
+                {
+                    case "1":
+                        string color = ui.GetStringInput("Color: ");
+                        int noOfWheels = ui.GetIntInput("Number of wheels: ");
+                        string regNo = ui.GetStringInput("Reg. number: ");                        
+                        int noOfEngines = ui.GetIntInput("Number of engines: ");
+                        handler.ParkAirplane(color, noOfWheels, regNo, noOfEngines);
+                        break;
+                    case "2":
+                        //handler.SeeStatistics();
+                        break;
+                    case "3":
+                        // UnparkVehicle();
+                        break;
+                    case "Q":
+                        isRunning = false;
+                        break;
+                    default:
+                        ui.Print("Please enter some valid input (1, 2, 3 or Q");
+                        break;
+                }
+
+            } while (isRunning=true);
+          
+
+            //handler.ParkVehicle()
 
         }
+
+        
+        
 
 
 
@@ -114,7 +145,7 @@ namespace Garage1._0
         //    payRoll.AddEmployee("Anna", 5000);
         //}
 
-        
+
 
 
     }
