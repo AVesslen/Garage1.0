@@ -8,9 +8,45 @@ namespace Garage1._0.UserInterface
 {
     public class ConsoleUI //: IUI
     {
-        public string GetInput()
+        public string GetStringInput(string message)
         {
-            return Console.ReadLine()!;
+            string answer;
+            bool success = false;
+
+            do
+            {
+                Print($"{message} ");
+                answer = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(answer))
+                {
+                    Print($"You must enter a valid input. Please try again.");
+                }
+                else
+                {
+                    success = true;
+                }
+
+            } while (!success);
+
+            return answer!;
+        }
+
+        public int GetIntInput(string message)
+        {
+            bool isInt = false;
+            int answer;
+            do
+            {
+                string input = GetStringInput(message);
+
+                isInt = int.TryParse(input, out answer);
+                if (!isInt)
+                    Print($"That was not a valid input. Please try again.");
+            }
+            while (isInt == false);
+
+            return answer;
         }
 
         public void Print(string message)
