@@ -18,22 +18,14 @@ namespace Garage1._0
             this.handler = handler;
 
         }
-        // Welcome to this garageapplication. Let's create a garage! Hur many
-        // parking spaces do you need in your garage? (capacity)
-        //
-        // Do you want the garage to be half full of vehicles from start? (yes/no)
-
-        // Skapa garage 
-
-        //Menu
-        //1. Park a vehicle in a garage
-        //2. See statistics of your garage
-        //3. Unpark vehicle from garage
-        //4. Quit the application
-
+       
         public void Run()
         {
-          SeedData(int capacity);
+            ui.Print("Welcome to this garage application. Let's create a garage!");
+            int capacity = Util.AskForInt("How many parking spaces do you need in your garage? ", ui);
+            // Do you want the garage to be half full of vehicles from start? (yes/no)
+            //SeedData(capacity);
+            // Skapa garage 
 
             do
             {
