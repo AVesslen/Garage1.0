@@ -26,41 +26,43 @@ namespace Garage1._0
             // Do you want the garage to be half full of vehicles from start? (yes/no)
             //SeedData(capacity);
             // Skapa garage 
-
+            bool isRunning = true;
             do
             {
-                ShowMainMeny();
+                ShowMainMenu();
                 string input = ui.GetInput()!;
 
                 switch (input)
                 {
-                    case MenyHelpers.Add:
-                        AddEmployee();
+                    case "1":
+                        ParkVehicle();
                         break;
-                    case MenyHelpers.Print:
-                        PrintEmployees();
+                    case "2":
+                        SeeStatistics();
                         break;
-                    case MenyHelpers.Quit:
-                        Environment.Exit(0);
+                    case "3":
+                        UnparkVehicle();
+                        break;
+                    case "Q":
+                       isRunning = false;
                         break;
                     default:
+                        ui.Print("Please enter some valid input (1, 2, 3 or Q");
                         break;
                 }
-
-
-
-            } while (true);
+            } while (isRunning==true);
         }
 
 
         //    //Lägga till menyhelpers?
-        //private void ShowMainMenu()
-        //{
-        //    ui.Print("1. Park a vehicle in the garage");
-        //    ui.Print("2. See statistics of your garage");
-        //    ui.Print("3. Unpark vehicle from garage");
-        //    ui.Print("4. Quit the application");      
-        //}
+        private void ShowMainMenu()
+        {
+            ui.Print("Please select what you want to do with your garage"
+            + "\n1. Park a vehicle in the garage"
+            + "\n2. See statistics of your garage"
+            + "\n3. Unpark vehicle from garage"
+            + "\nQ. Quit the application");
+        }
 
         //private void SeedData(int capacity)
         //{
