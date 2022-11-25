@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Garage1._0
 {
-    internal class Manager
+    public class Manager
     {
         private readonly ConsoleUI ui; //senare IUI
         private readonly GarageHandler handler; //senare IHandler
@@ -27,11 +27,15 @@ namespace Garage1._0
 
             //garagenamn?
             int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
-            //string message="Do you want the garage to be half full of vehicles from start? (yes/no)";
-            //string answer = ui.GetStringInput(message);
-            //SeedData(capacity);
-            // Skapa garage 
+                    
             handler.CreateGarage(capacity);
+           
+            string answer=ui.GetStringInput("Do you want the garage to be filled with some vehicles from start? (yes/no)");
+            if (answer.ToLower()=="yes")
+            handler.SeedData();
+
+            
+            
             bool isRunning = true;
             do
             {               
@@ -43,7 +47,7 @@ namespace Garage1._0
                         ParkVehicle();
                         break;
                     case "2":
-                        //handler.SeeStatistics();
+                        SeeStatistics();
                         break;
                     case "3":
                        // UnparkVehicle();
@@ -74,56 +78,105 @@ namespace Garage1._0
             + "\n3. Unpark a vehicle"
             + "\nQ. Quit the application");
         }
+
+
         private void ParkVehicle()
         {
-            //isFull?
+          bool full= handler.CheckIfFullGarage();//isFull?
 
-            bool isRunning = true;
-            do
+
             {
-            string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
-            + "\n1. Airplane"
-            + "\n2. Motorcycle"
-            + "\n3. Car"
-            + "\n4. Bus"
-            + "\n5. Boat");
+                string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
+                + "\n1. Airplane"
+                + "\n2. Motorcycle"
+                + "\n3. Car"
+                + "\n4. Bus"
+                + "\n5. Boat");
+                        string color = ui.GetStringInput("Color: ");
+                        int noOfWheels = ui.GetIntInput("Number of wheels: ");
+                        string regNo = ui.GetStringInput("Reg. number: ");
 
                 switch (vehicleType)
                 {
                     case "1":
-                        string color = ui.GetStringInput("Color: ");
-                        int noOfWheels = ui.GetIntInput("Number of wheels: ");
-                        string regNo = ui.GetStringInput("Reg. number: ");                        
                         int noOfEngines = ui.GetIntInput("Number of engines: ");
-                        handler.ParkAirplane(color, noOfWheels, regNo, noOfEngines);
+                       
+                        if(handler.ParkAirplane(color, noOfWheels, regNo, noOfEngines)==true)
+                                ui.Print("Your vehicle was succesfully parked in the garage!");
                         break;
                     case "2":
-                        //handler.SeeStatistics();
+                        int cylinderVolume = ui.GetIntInput("Cylinder volume: ");
+
+                        if (handler.ParkMotorcycle(color, noOfWheels, regNo, cylinderVolume) == true)
+                            ui.Print("Your vehicle was succesfully parked in the garage!");
                         break;
                     case "3":
-                        // UnparkVehicle();
+                        string fuelType = ui.GetStringInput("Fuel type?: ");
+
+                        if (handler.ParkCar(color, noOfWheels, regNo, fuelType) == true)
+                            ui.Print("Your vehicle was succesfully parked in the garage!");
                         break;
-                    case "Q":
-                        isRunning = false;
+                    case "4":
+                        int noOfSeats = ui.GetIntInput("Number of seats: ");
+
+                        if (handler.ParkBus(color, noOfWheels, regNo, noOfSeats) == true)
+                            ui.Print("Your vehicle was succesfully parked in the garage!");
+                        break;
+                    case "5":
+                        int length = ui.GetIntInput("Length: ");
+
+                        if (handler.ParkBoat(color, noOfWheels, regNo, length) == true)
+                            ui.Print("Your vehicle was succesfully parked in the garage!");
                         break;
                     default:
-                        ui.Print("Please enter some valid input (1, 2, 3 or Q");
+                        ui.Print("Please enter some valid input (1, 2, 3, 4, 5");
                         break;
                 }
 
-            } while (isRunning=true);         
-
+            }
         }
 
-        
-        
+        private void SeeStatistics()
+        {
+            //What du you want to do?
+            //     1. List all parked vehicles
+            //     2. List vehicles by property
+            //    3. Find a specific vehicle by regNO
+
+            //if 3.
+            //Do you want to filter by type?
+            //  if yes
+            //    string type = ui.GetStringInput("which type? ");
+            // Do you want to filter by Color?
+            // if yes
+            //string color = ui.GetStringInput("which color? ");
+            // by rising number Of Wheels?
+            // if yes
+           var q= handler.SortByProperty("grey");
+            foreach (var item in q)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            //bool isFull=handler.CheckIfEmptyGarage();
+
+            //  handler.ListAllVehiclesInGarage();
+            //foreach (Vehicle item in handler.garage)
+            //{
+            //    Console.WriteLine(item);
+            //}
+        }
 
 
 
 
 
 
-        
+
+
+
+       
 
 
 

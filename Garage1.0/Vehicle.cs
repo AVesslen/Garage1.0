@@ -14,6 +14,7 @@ namespace Garage1._0
         public string RegNo { get; set; }
 
 
+
        // public Vehicle() : this("DefaultColor", 4,"NotRegistredYet") { }
 
         public Vehicle(string color, int noOfWheels, string regNo)
