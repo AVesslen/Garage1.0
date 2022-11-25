@@ -20,17 +20,18 @@ namespace Garage1._0
             this.handler = handler;
         }
        
-        internal void Run()
-        {
-            Initialize();
-            Start();
-        }
-
-
-
+      
         public void Start()
-        {      
+        {
+            WelcomeUser();
 
+            //garagenamn?
+            int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
+            //string message="Do you want the garage to be half full of vehicles from start? (yes/no)";
+            //string answer = ui.GetStringInput(message);
+            //SeedData(capacity);
+            // Skapa garage 
+            handler.CreateGarage(capacity);
             bool isRunning = true;
             do
             {               
@@ -59,23 +60,12 @@ namespace Garage1._0
 
      
 
-        private void Initialize()
-        {
-            WelcomeUser();
-            
-            int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
-            //string message="Do you want the garage to be half full of vehicles from start? (yes/no)";
-            //string answer = ui.GetStringInput(message);
-            //SeedData(capacity);
-            // Skapa garage 
-            handler.CreateGarage(capacity);
-        }
+     
         private void WelcomeUser()
         {
             ui.Print("Welcome to this garage application. Let's create a garage!");
         }
-
-        //    //Lägga till menyhelpers?
+       
         private string ShowMainMenu()
         {
            return ("Please select what you want to do with your garage"
@@ -87,6 +77,7 @@ namespace Garage1._0
         private void ParkVehicle()
         {
             //isFull?
+
             bool isRunning = true;
             do
             {
@@ -120,10 +111,7 @@ namespace Garage1._0
                         break;
                 }
 
-            } while (isRunning=true);
-          
-
-            //handler.ParkVehicle()
+            } while (isRunning=true);         
 
         }
 
@@ -135,15 +123,7 @@ namespace Garage1._0
 
 
 
-        //private void SeedData(int capacity)
-        //{
-        //    payRoll.AddEmployee("Anna", 36000);
-        //    payRoll.AddEmployee("Bengt", 30000);
-        //    payRoll.AddEmployee("Pelle", 4000);
-        //    payRoll.AddEmployee("Lars", 60000);
-        //    payRoll.AddEmployee("Anna", 35000);
-        //    payRoll.AddEmployee("Anna", 5000);
-        //}
+        
 
 
 

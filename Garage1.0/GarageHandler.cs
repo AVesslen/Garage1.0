@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Garage1._0.UserInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,28 +9,22 @@ namespace Garage1._0
 {
     public class GarageHandler
     {        
-        private Garage<Vehicle> garage;
-        public GarageHandler()
-        {
-
-        }
-       
+       private Garage<Vehicle> garage;
+        
+        
         public void CreateGarage(int capacity)
         {
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+            this.garage = garage;            
         }
 
-        internal bool ParkAirplane(string color, int noOfWheels, string regNo,int numberOfEngines)
+        internal void ParkAirplane(string color, int noOfWheels, string regNo,int numberOfEngines)
         {
             AirPlane airplane = new AirPlane(color, noOfWheels, regNo, numberOfEngines);
-           if (garage.Add(airplane))
-                return true;
-           return false;
+            garage.Add(airplane);         
+           
         }
 
-        //internal void garage.Add(Vehicle vehicle);
-        //{
-        //    throw new NotImplementedException();
-        //}
+      
     }
 }

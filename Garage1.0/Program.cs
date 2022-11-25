@@ -8,7 +8,7 @@ namespace Garage1._0
         {
 
             Manager manager = new Manager(new ConsoleUI(), new GarageHandler());
-            manager.Run();
+            manager.Start();
             
         //    Test();
 

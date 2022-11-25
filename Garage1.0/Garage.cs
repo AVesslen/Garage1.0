@@ -39,7 +39,7 @@ namespace Garage1._0
 
         public bool Add(T item)
         {
-            ArgumentNullException.ThrowIfNull(item,nameof(item));
+           // ArgumentNullException.ThrowIfNull(item,nameof(item));
 
             bool result = false;
             for (int i = 0; i < vehicleArray.Length; i++)
@@ -47,8 +47,9 @@ namespace Garage1._0
                 if (vehicleArray[i] == null)
                 {
                     vehicleArray[i] = item; 
-                    result = true;
                     NoOfVehiclesParked++;
+                    result = true;
+                    return result;
                 }               
             }
             return result;
