@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Garage1._0
 {
@@ -17,6 +18,7 @@ namespace Garage1._0
 
         public int NoOfVehiclesParked { get; private set; }
 
+
         public bool IsFull
         {
             get 
@@ -28,10 +30,14 @@ namespace Garage1._0
             set { isFull = value; }
         }
 
+        public override string ToString()
+        {
+            return this.ToString();    
+        }
 
         public Garage(int capacity)
         {
-            if (capacity <= 0) throw new ArgumentOutOfRangeException("The capacity needs to > 0");
+            if (capacity <= 0) throw new ArgumentOutOfRangeException("The capacity needs to be > 0");
             this.capacity = capacity;
             vehicleArray = new T[this.capacity];
         }

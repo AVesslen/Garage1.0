@@ -24,10 +24,9 @@ namespace Garage1._0
         public void Start()
         {
             WelcomeUser();
-
+           
             //garagenamn?
             int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
-                    
             handler.CreateGarage(capacity);
            
             string answer=ui.GetStringInput("Do you want the garage to be filled with some vehicles from start? (yes/no)");
@@ -83,7 +82,8 @@ namespace Garage1._0
         private void ParkVehicle()
         {
           bool full= handler.CheckIfFullGarage();//isFull?
-
+            if (full == true)
+                ui.Print("Sorry, your garage is allready full.");
 
             {
                 string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
@@ -102,31 +102,31 @@ namespace Garage1._0
                         int noOfEngines = ui.GetIntInput("Number of engines: ");
                        
                         if(handler.ParkAirplane(color, noOfWheels, regNo, noOfEngines)==true)
-                                ui.Print("Your vehicle was succesfully parked in the garage!");
+                                ui.PrintAddSuceed();
                         break;
                     case "2":
                         int cylinderVolume = ui.GetIntInput("Cylinder volume: ");
 
                         if (handler.ParkMotorcycle(color, noOfWheels, regNo, cylinderVolume) == true)
-                            ui.Print("Your vehicle was succesfully parked in the garage!");
+                            ui.PrintAddSuceed();
                         break;
                     case "3":
                         string fuelType = ui.GetStringInput("Fuel type?: ");
 
                         if (handler.ParkCar(color, noOfWheels, regNo, fuelType) == true)
-                            ui.Print("Your vehicle was succesfully parked in the garage!");
+                            ui.PrintAddSuceed();
                         break;
                     case "4":
                         int noOfSeats = ui.GetIntInput("Number of seats: ");
 
                         if (handler.ParkBus(color, noOfWheels, regNo, noOfSeats) == true)
-                            ui.Print("Your vehicle was succesfully parked in the garage!");
+                            ui.PrintAddSuceed();
                         break;
                     case "5":
                         int length = ui.GetIntInput("Length: ");
 
                         if (handler.ParkBoat(color, noOfWheels, regNo, length) == true)
-                            ui.Print("Your vehicle was succesfully parked in the garage!");
+                            ui.PrintAddSuceed();
                         break;
                     default:
                         ui.Print("Please enter some valid input (1, 2, 3, 4, 5");
@@ -138,6 +138,13 @@ namespace Garage1._0
 
         private void SeeStatistics()
         {
+           string print=handler.PrintVehicles2();
+            ui.Print(print);
+           // handler.SortByProperty("grey");
+
+            //string types=handler.ListType();
+            //ui.Print(types);
+
             //What du you want to do?
             //     1. List all parked vehicles
             //     2. List vehicles by property
@@ -152,7 +159,8 @@ namespace Garage1._0
             //string color = ui.GetStringInput("which color? ");
             // by rising number Of Wheels?
             // if yes
-           var q= handler.SortByProperty("grey");
+            var q = handler.SortByColor("grey");
+            q = handler.SortByNoOfWheels();
             foreach (var item in q)
             {
                 Console.WriteLine(item);
@@ -161,11 +169,16 @@ namespace Garage1._0
 
             //bool isFull=handler.CheckIfEmptyGarage();
 
-            //  handler.ListAllVehiclesInGarage();
+            //Garage<Vehicle> garage=handler.ListAllVehiclesInGarage();
             //foreach (Vehicle item in handler.garage)
             //{
             //    Console.WriteLine(item);
             //}
+
+            //var q = garage.Where(v => v?.Color == color);
+            //q = q.OrderBy(v => v.NoOfWheels);
+
+            //return q;
         }
 
 
@@ -176,7 +189,7 @@ namespace Garage1._0
 
 
 
-       
+
 
 
 

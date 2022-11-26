@@ -53,5 +53,10 @@ namespace Garage1._0.UserInterface
         {
             Console.WriteLine(message);
         }
+
+        public void PrintAddSuceed()
+        {
+            Console.WriteLine("Your vehicle was sucessfully parked in the garage!");
+        }
     }
 }

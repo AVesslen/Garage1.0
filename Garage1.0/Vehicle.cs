@@ -23,6 +23,11 @@ namespace Garage1._0
             this.NoOfWheels = noOfWheels;
             this.RegNo = regNo;
         }
+
+        public override string ToString()
+        {
+            return "Reg.no:" + RegNo + "  Color:" + Color + "  No of wheels: " + NoOfWheels;
+        }
     }
 
     public class AirPlane : Vehicle
@@ -33,6 +38,11 @@ namespace Garage1._0
         public AirPlane(string color, int noOfWheels, string regNo, int numberOfEngines ) : base(color, noOfWheels, regNo)
         {
             NumberOfEngines = numberOfEngines;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "  No of engines:" + NumberOfEngines;
         }
     }
 
