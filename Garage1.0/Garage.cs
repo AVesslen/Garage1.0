@@ -16,7 +16,7 @@ namespace Garage1._0
         private bool isFull;
 
 
-        public int NoOfVehiclesParked { get; private set; }
+        public int NoOfVehiclesParked { get; private set; }=0;
 
 
         public bool IsFull
@@ -24,10 +24,13 @@ namespace Garage1._0
             get 
             {
                 if (this.capacity == this.NoOfVehiclesParked)
-                    return isFull;
-                else return false;
+                    isFull= true;
+                    
+                else isFull=false;
+
+                return isFull;
             }
-            set { isFull = value; }
+            //set { isFull = value; }
         }
 
         public override string ToString()

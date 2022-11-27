@@ -82,20 +82,41 @@ namespace Garage1._0
 
         private void ParkVehicle()
         {
-          bool full= handler.CheckIfFullGarage();//isFull?
-            if (full == true)
-                ui.Print("Sorry, your garage is allready full.");
-
+          bool isFull= handler.CheckIfFullGarage();//isFull?
+            if (isFull == true)
             {
+                ui.Print("Sorry, your garage is allready full.");
+                return;
+            }
+
+
+            { 
                 string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
                 + "\n1. Airplane"
                 + "\n2. Motorcycle"
                 + "\n3. Car"
                 + "\n4. Bus"
                 + "\n5. Boat");
-                        string color = ui.GetStringInput("Color: ");
-                        int noOfWheels = ui.GetIntInput("Number of wheels: ");
-                        string regNo = ui.GetStringInput("Reg. number: ");
+
+                string color = ui.GetStringInput("Color: ");
+                int noOfWheels = ui.GetIntInput("Number of wheels: ");
+
+                string regNo;    // Checks if the reg.no allready exists. Every reg.no is uniqe and they can't be equal each other
+                bool isExisting = false;
+                do
+                {
+                   regNo = ui.GetStringInput("Reg. number: ");
+                    if (handler.CheckRegNoBeforeAdding(regNo) == true)
+                    {
+                        ui.Print("That reg.no. allready exists. Please try again!");
+                        isExisting = true;
+                    }
+                    else isExisting = false;
+                    
+                } while (isExisting == true) ;
+               
+
+               
 
                 switch (vehicleType)
                 {

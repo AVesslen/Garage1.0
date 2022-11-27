@@ -30,7 +30,8 @@ namespace Garage1._0
         internal bool CheckIfFullGarage()
         {
             if (garage.IsFull == true) return true;
-            return false;
+            else
+                return false;
         }
 
 
@@ -70,20 +71,32 @@ namespace Garage1._0
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
 
             if (q.Count() == 0)
-            result = $"Sorry, could not find a vehicle with reg.no {inputRegNo}";
-           
-        else
-        {
-            result = $"Here is the vehicle with reg.no {inputRegNo}:\n";
-            foreach (var v in q)
-            {                
-                result += $"{v.ToString()};";
-            }
-        }
+                result = $"Sorry, could not find a vehicle with reg.no {inputRegNo}";
 
+            else
+            {
+                result = $"Here is the vehicle with reg.no {inputRegNo}:\n";
+                foreach (var v in q)
+                {
+                    result += $"{v.ToString()};";
+                }
+            }
             return result;
         }
-    
+
+
+        internal bool CheckRegNoBeforeAdding(string inputRegNo)
+        {
+            bool isExisting;
+
+            var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
+            if (q.Count() == 0)    
+                isExisting = false;   // The reg.no is not defined at any of the vehicles
+            else isExisting = true;
+
+            return isExisting;
+        }
+
 
 
         internal IEnumerable<Vehicle> SortByProperty(string color)
