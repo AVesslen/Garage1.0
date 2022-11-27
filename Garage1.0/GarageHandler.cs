@@ -24,7 +24,14 @@ namespace Garage1._0
         {
             if (garage.NoOfVehiclesParked == 0)
                 return true;
-            return false;
+            else 
+                return false;
+        }
+
+        internal int GetNoOfVehiclesParked()
+        {
+            int amount = garage.NoOfVehiclesParked;           
+            return amount;
         }
 
         internal bool CheckIfFullGarage()

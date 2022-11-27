@@ -50,7 +50,7 @@ namespace Garage1._0
                         SeeStatistics();
                         break;
                     case "3":
-                       // UnparkVehicle();
+                        UnparkVehicle();
                         break;
                     case "Q":
                        isRunning = false;
@@ -62,9 +62,7 @@ namespace Garage1._0
             } while (isRunning==true);
         }
 
-     
 
-     
         private void WelcomeUser()
         {
             ui.Print("Welcome to this garage application. Let's create a garage!");
@@ -82,13 +80,12 @@ namespace Garage1._0
 
         private void ParkVehicle()
         {
-          bool isFull= handler.CheckIfFullGarage();//isFull?
+          bool isFull= handler.CheckIfFullGarage();
             if (isFull == true)
             {
                 ui.Print("Sorry, your garage is allready full.");
                 return;
             }
-
 
             { 
                 string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
@@ -98,7 +95,8 @@ namespace Garage1._0
                 + "\n4. Bus"
                 + "\n5. Boat");
 
-                string color = ui.GetStringInput("Color: ");
+                
+                string color = ui.GetStringInput("Color: ");          // Asks for properties in base class
                 int noOfWheels = ui.GetIntInput("Number of wheels: ");
 
                 string regNo;    // Checks if the reg.no allready exists. Every reg.no is uniqe and they can't be equal each other
@@ -118,7 +116,7 @@ namespace Garage1._0
 
                
 
-                switch (vehicleType)
+                switch (vehicleType)            // Asks for properties in sub classes
                 {
                     case "1":
                         int noOfEngines = ui.GetIntInput("Number of engines: ");
@@ -154,9 +152,36 @@ namespace Garage1._0
                         ui.Print("Please enter some valid input (1, 2, 3, 4, 5");
                         break;
                 }
-
             }
         }
+
+        private void UnparkVehicle()
+        {
+            if (handler.CheckIfEmptyGarage() == true)
+            {
+                ui.Print("Sorry, you can't unpark any vehicle, because the garage is empty.");
+                return;
+            }
+
+           
+            ui.Print("Which of the listed vehicles do you want to unpark? (1,2,3.. etc");  
+            string vehiclesInGarage=handler.ListAllVehiclesInGarage(); 
+            ui.Print(vehiclesInGarage);                                     // Displays all parked vehicles
+            int inputNumber= ui.GetIntInput("");                         //The user can choose number from the displayed list 
+
+            while (inputNumber<=0 || inputNumber>handler.GetNoOfVehiclesParked())
+            {
+                ui.Print("That was an invalid input, please enter a valid number 1, 2, 3, etc.");
+                inputNumber = ui.GetIntInput("");
+            }
+            
+        }
+
+
+
+
+
+
 
         private void SeeStatistics()
         {
