@@ -138,8 +138,10 @@ namespace Garage1._0
 
         private void SeeStatistics()
         {
-           string print=handler.PrintVehicles2();
-            ui.Print(print);
+            ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");
+           
+            string answer=handler.PrintVehicles2();
+            ui.Print(answer);
            // handler.SortByProperty("grey");
 
             //string types=handler.ListType();
@@ -159,12 +161,12 @@ namespace Garage1._0
             //string color = ui.GetStringInput("which color? ");
             // by rising number Of Wheels?
             // if yes
-            var q = handler.SortByColor("grey");
-            q = handler.SortByNoOfWheels();
-            foreach (var item in q)
-            {
-                Console.WriteLine(item);
-            }
+            //var q = handler.SortByColor("grey");
+            //q = handler.SortByNoOfWheels();
+            //foreach (var item in q)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
             //bool isFull=handler.CheckIfEmptyGarage();

@@ -55,9 +55,11 @@ namespace Garage1._0
         internal string PrintVehicles2()
         {
             string result = "";
+            int i = 1;
             foreach (Vehicle item in garage)
             {
-              result+=($"{item.GetType().Name}  {item.ToString()}\n");
+                result += ($"{i}. {item.ToString()}\n");
+                i++;
             }
             return result;
         }
@@ -150,9 +152,15 @@ namespace Garage1._0
             Boat boat = new Boat(color: "white", noOfWheels: 0, regNo: "Sea111", length: 1);
             garage.Add(boat);
             AirPlane airplane2 = new AirPlane(color: "grey", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
+            Bus bus = new Bus(color: "green", noOfWheels: 4, regNo: "BUS001", numberOfSeats: 40);
+            garage.Add(bus);
             garage.Add(airplane2);
             Motorcycle motorcycle2 = new Motorcycle(color: "yellow", noOfWheels: 2, regNo: "ACC800", cylinderVolume: 850);
             garage.Add(motorcycle2);
+            Car car = new Car(color: "red", noOfWheels: 4, regNo: "CAR001", fuelType: "gasoline");
+            garage.Add(car);
+            Bus bus2 = new Bus(color: "green", noOfWheels: 4, regNo: "BUS002", numberOfSeats: 50);
+            garage.Add(bus2);
         }
     }
 }

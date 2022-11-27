@@ -26,7 +26,7 @@ namespace Garage1._0
 
         public override string ToString()
         {
-            return "Reg.no:" + RegNo + "  Color:" + Color + "  No of wheels: " + NoOfWheels;
+            return $"{this.GetType().Name}\tReg.no:{ RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}";
         }
     }
 
@@ -42,7 +42,7 @@ namespace Garage1._0
 
         public override string ToString()
         {
-            return base.ToString() + "  No of engines:" + NumberOfEngines;
+            return base.ToString() +"\tNo of engines:" + NumberOfEngines;
         }
     }
 
@@ -55,6 +55,12 @@ namespace Garage1._0
         {
             CylinderVolume = cylinderVolume;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + "\tCylinder volume:" + CylinderVolume;
+        }
+
     }
 
     public class Car : Vehicle
@@ -65,6 +71,10 @@ namespace Garage1._0
         public Car(string color, int noOfWheels, string regNo, string fuelType) : base(color, noOfWheels, regNo)
         {
            FuelType=fuelType;
+        }
+        public override string ToString()
+        {
+            return $"{this.GetType().Name}\t\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}\tFuel type:{FuelType}";
         }
     }
 
@@ -77,6 +87,10 @@ namespace Garage1._0
         {
            NumberOfSeats=numberOfSeats;
         }
+        public override string ToString()
+        {
+            return $"{this.GetType().Name}\t\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}\tLength:{NumberOfSeats}";
+        }
     }
 
     public class Boat : Vehicle
@@ -87,6 +101,11 @@ namespace Garage1._0
         public Boat(string color, int noOfWheels, string regNo, int length) : base(color, noOfWheels, regNo)
         {
             Length = length;
+        }
+      
+        public override string ToString()
+        {
+            return $"{this.GetType().Name}\t\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}\tLength:{Length}";
         }
     }
 
