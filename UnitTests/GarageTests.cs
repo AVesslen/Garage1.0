@@ -26,11 +26,11 @@ namespace UnitTests
             // Arrange
             int capacity = 2;
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
-            AirPlane airPlane = new AirPlane("grey", 3, "FLY465", 2);
+            Airplane airplane = new Airplane("grey", 3, "FLY465", 2);
             bool expected = true;
 
             // Act
-           var actual = garage.Add(airPlane);
+           var actual = garage.Add(airplane);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -44,7 +44,7 @@ namespace UnitTests
             // Arrange
             int capacity = 2;
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
-            AirPlane airPlane = new AirPlane("grey", 3, "FLY465", 2);
+            Airplane airPlane = new Airplane("grey", 3, "FLY465", 2);
             Car car = new Car("red", 4, "khr999", "gasoline");
             Boat boat = new Boat("white", 0, "SEA864", 32);
             garage.Add(car);
@@ -56,6 +56,30 @@ namespace UnitTests
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Remove_InputIsNull_Throws()
+        {
+            // Arrange
+            int capacity = 2;
+            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+
+            // Act and Assert
+            //Assert.Throws<ArgumentNullException>(() => garage.Remove());
+        }
+
+        [Fact]
+        public void Remove_IndexNotValid_Throws()
+        {
+            // Arrange 
+            int capacity = 2;
+            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+            int index = 5;
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => garage.Remove(index));
+
 
         }
 

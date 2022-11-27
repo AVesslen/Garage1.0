@@ -42,6 +42,13 @@ namespace Garage1._0
         }
 
 
+        internal void UnparkVehicle(int index)
+        {
+            garage.Remove(index);
+        }
+
+       
+
         internal string ListAllVehiclesInGarage()
         {
             string result = "";
@@ -55,7 +62,7 @@ namespace Garage1._0
         }
 
 
-        internal string GetNoOfEachType()  // Groups vehicles by type and count no of each type 
+        internal string GetNoOfEachType()  // Groups vehicles by type and counts the number of each type 
         {
             string result = "";
             var vehicleTypeList = garage.GroupBy(v => v.GetType().Name).Select(v => new
@@ -98,7 +105,7 @@ namespace Garage1._0
 
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
             if (q.Count() == 0)    
-                isExisting = false;   // The reg.no is not defined at any of the vehicles
+                isExisting = false;   // The reg.no is not allready defined at any of the vehicles
             else isExisting = true;
 
             return isExisting;

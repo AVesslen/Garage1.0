@@ -15,10 +15,7 @@ namespace Garage1._0
         private readonly int capacity;
         private bool isFull;
 
-
         public int NoOfVehiclesParked { get; private set; }=0;
-
-
         public bool IsFull
         {
             get 
@@ -33,10 +30,10 @@ namespace Garage1._0
             //set { isFull = value; }
         }
 
-        public override string ToString()
-        {
-            return this.ToString();    
-        }
+        //public override string ToString()
+        //{
+        //    return this.ToString();    
+        //}
 
         public Garage(int capacity)
         {
@@ -48,7 +45,7 @@ namespace Garage1._0
 
         public bool Add(T item)
         {
-            ArgumentNullException.ThrowIfNull(item,nameof(item));
+           ArgumentNullException.ThrowIfNull(item,nameof(item));
        
             bool result = false;
             for (int i = 0; i < vehicleArray.Length; i++)
@@ -62,9 +59,12 @@ namespace Garage1._0
                 }               
             }
             return result;
-        }       
-
-        //Remove method   
+        }      
+        
+        //internal bool Remove(int index)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
         public IEnumerator<T> GetEnumerator()
@@ -79,6 +79,14 @@ namespace Garage1._0
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void Remove(int index)
+        {
+               // ArgumentNullException.ThrowIfNull(index);
+
+           if (index<0 || index>=NoOfVehiclesParked)
+                throw new ArgumentOutOfRangeException("The index was out of range");
         }
     }
 }

@@ -174,7 +174,9 @@ namespace Garage1._0
                 ui.Print("That was an invalid input, please enter a valid number 1, 2, 3, etc.");
                 inputNumber = ui.GetIntInput("");
             }
-            
+
+            handler.UnparkVehicle(inputNumber - 1);  // Remove vehicle by index 
+
         }
 
 

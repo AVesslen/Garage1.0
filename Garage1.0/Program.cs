@@ -7,7 +7,7 @@ namespace Garage1._0
         static void Main(string[] args)
         {
 
-
+            Remove2(null);
 
             Manager manager = new Manager(new ConsoleUI(), new GarageHandler());
             manager.Start();
@@ -38,6 +38,14 @@ namespace Garage1._0
             //       // Console.WriteLine($"{nr++} {item}");
 
             //    }
+        }
+        public static void Remove2(string index)
+        {
+             ArgumentNullException.ThrowIfNull(index);
+
+            if (index.Length < 2 || index.Length >= 14)
+                throw new ArgumentOutOfRangeException("The index was out of range");
+            Console.WriteLine(index);
         }
     }
 }
