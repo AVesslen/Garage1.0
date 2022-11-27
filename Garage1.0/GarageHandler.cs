@@ -32,27 +32,9 @@ namespace Garage1._0
             if (garage.IsFull== true) return true;
             return false;
         }
+              
 
-       
-        internal Garage<Vehicle> ListAllVehiclesInGarage()
-        {
-            //foreach (Vehicle item in garage)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            return garage; ;
-        }
-
-        internal void PrintVehicles()
-        {
-            foreach (Vehicle item in garage)
-            {
-                //Console.WriteLine(item.ToString());
-                //Console.WriteLine($"{item.GetType().Name}  {item.ToString()}");
-            }
-        }
-
-        internal string PrintVehicles2()
+        internal string ListAllVehiclesInGarage()
         {
             string result = "";
             int i = 1;
@@ -63,17 +45,26 @@ namespace Garage1._0
             }
             return result;
         }
+               
 
-        //public string ListType()
-        //{
-        //    string result = "";
-        //    var type = garage.Where(x => x != null).Select(x => x.GetType().Name);
-        //    foreach (var v in type)
-        //    {
-        //        result += v + "|";
-        //    }
-        //    return result;
-        //}
+        internal string GetNoOfEachType()  // Groups vehicles by type and count no of each type 
+        {
+            string result = "";
+            var vehicleTypeList = garage.GroupBy(v => v.GetType().Name).Select(g => new
+            {
+                type = g.Key,
+                count = g.Count()
+            }).ToList();
+
+           
+            foreach (var v in vehicleTypeList)
+            {
+                result += $"{v.type}: {v.count}\n";
+            }
+            return result;
+        }
+
+    
 
 
         internal IEnumerable<Vehicle> SortByProperty(string color)
@@ -105,7 +96,7 @@ namespace Garage1._0
 
         internal bool ParkAirplane(string color, int noOfWheels, string regNo, int numberOfEngines)
         {
-            AirPlane airplane = new AirPlane(color, noOfWheels, regNo, numberOfEngines);
+            Airplane airplane = new Airplane(color, noOfWheels, regNo, numberOfEngines);
             if (garage.Add(airplane) == true)
                 return true;
             else return false;
@@ -145,13 +136,13 @@ namespace Garage1._0
         }
         internal void SeedData()
         {           
-            AirPlane airplane = new AirPlane(color: "grey", noOfWheels: 3, regNo: "Sky123", numberOfEngines: 2);
+            Airplane airplane = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky123", numberOfEngines: 2);
             garage.Add(airplane);
             Motorcycle motorcycle = new Motorcycle(color: "black", noOfWheels: 2, regNo: "ACC900", cylinderVolume: 1000);
             garage.Add(motorcycle);
             Boat boat = new Boat(color: "white", noOfWheels: 0, regNo: "Sea111", length: 1);
             garage.Add(boat);
-            AirPlane airplane2 = new AirPlane(color: "grey", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
+            Airplane airplane2 = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
             Bus bus = new Bus(color: "green", noOfWheels: 4, regNo: "BUS001", numberOfSeats: 40);
             garage.Add(bus);
             garage.Add(airplane2);

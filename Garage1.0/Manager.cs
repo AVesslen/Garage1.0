@@ -138,10 +138,26 @@ namespace Garage1._0
 
         private void SeeStatistics()
         {
+            //1. List all vehicles in the garage
+
+            //Lägg till kapacitet och antal fordon?
             ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");
            
-            string answer=handler.PrintVehicles2();
+            string answer=handler.ListAllVehiclesInGarage();
             ui.Print(answer);
+
+            //2. List vehicle types and how many of them
+            ui.Print("Number of each vehicle:\n");
+           string answer2=handler.GetNoOfEachType();
+            ui.Print(answer2);
+
+
+            //string amountAirplane = handler.GetNoOfEachType();
+           // ui.Print(amountAirplane);
+
+
+
+
            // handler.SortByProperty("grey");
 
             //string types=handler.ListType();

@@ -30,12 +30,12 @@ namespace Garage1._0
         }
     }
 
-    public class AirPlane : Vehicle
+    public class Airplane : Vehicle
     { 
 
         public int NumberOfEngines { get; set; }
 
-        public AirPlane(string color, int noOfWheels, string regNo, int numberOfEngines ) : base(color, noOfWheels, regNo)
+        public Airplane(string color, int noOfWheels, string regNo, int numberOfEngines ) : base(color, noOfWheels, regNo)
         {
             NumberOfEngines = numberOfEngines;
         }
