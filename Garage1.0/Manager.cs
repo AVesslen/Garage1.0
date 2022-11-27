@@ -1,6 +1,7 @@
 ﻿using Garage1._0.UserInterface;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -138,18 +139,24 @@ namespace Garage1._0
 
         private void SeeStatistics()
         {
-            //1. List all vehicles in the garage
+           // //1. List all vehicles in the garage
 
-            //Lägg till kapacitet och antal fordon?
-            ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");
-           
-            string answer=handler.ListAllVehiclesInGarage();
-            ui.Print(answer);
+           // //ToDo: Lägg till kapacitet och antal fordon?
+           // ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");           
+           // string vehiclesInGarage=handler.ListAllVehiclesInGarage();
+           // ui.Print(vehiclesInGarage);
 
-            //2. List vehicle types and how many of them
-            ui.Print("Number of each vehicle:\n");
-           string answer2=handler.GetNoOfEachType();
-            ui.Print(answer2);
+
+           // //2. List vehicle types and how many of them
+           // ui.Print("Number of each vehicle:\n");
+           //string typeAndNumber=handler.GetNoOfEachType();
+           // ui.Print(typeAndNumber);
+
+            //3. Find a vehicle by registration number          
+            string inputRegNo = ui.GetStringInput("Enter the registration number of the vehicle you want to find: ");
+            string vehicleFound = handler.FindVehicleByRegNo(inputRegNo);          
+            ui.Print(vehicleFound);
+
 
 
             //string amountAirplane = handler.GetNoOfEachType();

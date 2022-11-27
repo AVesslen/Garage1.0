@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace Garage1._0
 {
     public class GarageHandler
-    {        
-       public Garage<Vehicle> garage;
-        
-        
+    {
+        public Garage<Vehicle> garage;
+
+
         public void CreateGarage(int capacity)
         {
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
-            this.garage = garage;            
+            this.garage = garage;
         }
 
         internal bool CheckIfEmptyGarage()
@@ -29,10 +29,10 @@ namespace Garage1._0
 
         internal bool CheckIfFullGarage()
         {
-            if (garage.IsFull== true) return true;
+            if (garage.IsFull == true) return true;
             return false;
         }
-              
+
 
         internal string ListAllVehiclesInGarage()
         {
@@ -45,18 +45,18 @@ namespace Garage1._0
             }
             return result;
         }
-               
+
 
         internal string GetNoOfEachType()  // Groups vehicles by type and count no of each type 
         {
             string result = "";
-            var vehicleTypeList = garage.GroupBy(v => v.GetType().Name).Select(g => new
+            var vehicleTypeList = garage.GroupBy(v => v.GetType().Name).Select(v => new
             {
-                type = g.Key,
-                count = g.Count()
+                type = v.Key,
+                count = v.Count()
             }).ToList();
 
-           
+
             foreach (var v in vehicleTypeList)
             {
                 result += $"{v.type}: {v.count}\n";
@@ -64,6 +64,25 @@ namespace Garage1._0
             return result;
         }
 
+        internal string FindVehicleByRegNo(string inputRegNo)
+        {
+            string result = "";
+            var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
+
+            if (q.Count() == 0)
+            result = $"Sorry, could not find a vehicle with reg.no {inputRegNo}";
+           
+        else
+        {
+            result = $"Here is the vehicle with reg.no {inputRegNo}:\n";
+            foreach (var v in q)
+            {                
+                result += $"{v.ToString()};";
+            }
+        }
+
+            return result;
+        }
     
 
 
@@ -153,5 +172,6 @@ namespace Garage1._0
             Bus bus2 = new Bus(color: "green", noOfWheels: 4, regNo: "BUS002", numberOfSeats: 50);
             garage.Add(bus2);
         }
+
     }
 }
