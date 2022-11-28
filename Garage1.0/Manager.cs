@@ -47,11 +47,12 @@ namespace Garage1._0
                         ParkVehicle();
                         break;
                     case "2":
-                        SeeStatistics();
-                        break;
-                    case "3":
                         UnparkVehicle();
                         break;
+                    case "3":
+                        ListAll();
+                        break;
+                    
                     case "Q":
                        isRunning = false;
                         break;
@@ -72,8 +73,11 @@ namespace Garage1._0
         {
            return ("Please select what you want to do with your garage"
             + "\n1. Park a vehicle"
-            + "\n2. See statistics"
-            + "\n3. Unpark a vehicle"
+            + "\n2. Unpark a vehicle"
+            + "\n3. List all vehicles in the garage"
+            + "\n4. List vehicle types and how many of them"
+            + "\n5. Find a vehicle by registration number"
+            + "\n6. Find vehicle by one or more properties"
             + "\nQ. Quit the application");
         }
 
@@ -207,9 +211,9 @@ namespace Garage1._0
             //ui.Print(vehicleFound);
 
             //4. Find vehicle by one or more properties
-            string color = "";
-            string type = "";
+            
             // type
+            string type = "";
             bool isRunning = false;
             string answer = ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
             do
@@ -254,9 +258,9 @@ namespace Garage1._0
                 }
 
             } while (isRunning == true);
-            
+
             // color
-            
+            string color = "";
             answer = ui.GetStringInput("Do you want to find vehicle by color? (yes/no)");
             do
             {
