@@ -188,33 +188,44 @@ namespace Garage1._0
 
         private void SeeStatistics()
         {
-           // //1. List all vehicles in the garage
+            // //1. List all vehicles in the garage
 
-           // //ToDo: Lägg till kapacitet och antal fordon?
-           // ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");           
-           // string vehiclesInGarage=handler.ListAllVehiclesInGarage();
-           // ui.Print(vehiclesInGarage);
+            // //ToDo: Lägg till kapacitet och antal fordon?
+            // ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");           
+            // string vehiclesInGarage=handler.ListAllVehiclesInGarage();
+            // ui.Print(vehiclesInGarage);
 
 
-           // //2. List vehicle types and how many of them
-           // ui.Print("Number of each vehicle:\n");
-           //string typeAndNumber=handler.GetNoOfEachType();
-           // ui.Print(typeAndNumber);
+            // //2. List vehicle types and how many of them
+            // ui.Print("Number of each vehicle:\n");
+            //string typeAndNumber=handler.GetNoOfEachType();
+            // ui.Print(typeAndNumber);
 
             //3. Find a vehicle by registration number          
             //string inputRegNo = ui.GetStringInput("Enter the registration number of the vehicle you want to find: ");
             //string vehicleFound = handler.FindVehicleByRegNo(inputRegNo);          
             //ui.Print(vehicleFound);
 
+            //4. Find vehicle by one or more properties
+            string output = handler.FindByProperty("Motorcycle", "yellow", 3);
+            ui.Print($"Result:\n{output}");
+
+            //string type = "";
+            //Dictionary?
+           
+
+
+
+            //var filteredPeople = people.Where(person => person.SecQuestions[key] == value);
 
 
             //string amountAirplane = handler.GetNoOfEachType();
-           // ui.Print(amountAirplane);
+            // ui.Print(amountAirplane);
 
 
 
 
-           // handler.SortByProperty("grey");
+            // handler.SortByProperty("grey");
 
             //string types=handler.ListType();
             //ui.Print(types);

@@ -10,13 +10,15 @@ namespace Garage1._0.UserInterface
     {
         public string GetStringInput(string message)
         {
-            string answer;
+            string answer = string.Empty;
             bool success = false;
 
             do
             {
                 Print($"{message} ");
-                answer = Console.ReadLine();
+                var input  = Console.ReadLine();
+                if (input != null)
+                    answer = input;
 
                 if (string.IsNullOrEmpty(answer))
                 {

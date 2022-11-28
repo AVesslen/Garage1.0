@@ -68,18 +68,16 @@ namespace Garage1._0
 
             if (index < 0 || index >= NoOfVehiclesParked)
             {
-                throw new ArgumentOutOfRangeException();
-                result = false;
+                throw new ArgumentOutOfRangeException();              
             }
             else
             {
-            vehicleArray[index] = null;
+            vehicleArray[index] = default!;
             NoOfVehiclesParked--;   
             result= true;
             }
             return result;
         }
-             
 
 
         public IEnumerator<T> GetEnumerator()

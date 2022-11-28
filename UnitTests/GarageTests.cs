@@ -16,7 +16,7 @@ namespace UnitTests
 
             // Act and Assert
 
-            Assert.Throws<ArgumentNullException>(() => garage.Add(null));
+            Assert.Throws<ArgumentNullException>(() => garage.Add(null!));
         }
 
 

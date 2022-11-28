@@ -11,7 +11,7 @@ namespace Garage1._0
 {
     public class GarageHandler
     {
-        public Garage<Vehicle> garage;
+        public Garage<Vehicle> garage = null!;
 
 
         public void CreateGarage(int capacity)
@@ -24,13 +24,13 @@ namespace Garage1._0
         {
             if (garage.NoOfVehiclesParked == 0)
                 return true;
-            else 
+            else
                 return false;
         }
 
         internal int GetNoOfVehiclesParked()
         {
-            int amount = garage.NoOfVehiclesParked;           
+            int amount = garage.NoOfVehiclesParked;
             return amount;
         }
 
@@ -51,7 +51,7 @@ namespace Garage1._0
                 return false;
         }
 
-       
+
 
         internal string ListAllVehiclesInGarage()
         {
@@ -108,7 +108,7 @@ namespace Garage1._0
             bool isExisting;
 
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
-            if (q.Count() == 0)    
+            if (q.Count() == 0)
                 isExisting = false;   // False if reg.no is not allready defined at any of the vehicles
             else isExisting = true;
 
@@ -117,27 +117,42 @@ namespace Garage1._0
 
 
 
-        internal IEnumerable<Vehicle> SortByProperty(string color)
+        internal string FindByProperty(string type, string color, int noOfWheels)
         {
+            string result = "";
+            IEnumerable<Vehicle> q = garage;
+            if (!type.Equals("X"))
+            {
+               q = q.Where(v => v.GetType().Name == type);
+            }
+            if(color != "X")
+            {
+                q = q.Where(v => v.Color == color);
+            }
+            if (noOfWheels != -1)
+            {
+                q = q.Where(v => v.NoOfWheels == noOfWheels);
+            }
 
-            var q = garage.Where(v => v?.Color == color);
-            q = q.OrderBy(v => v.NoOfWheels);
 
-            return q;
-           
+            foreach (var item in q)
+            {
+                result += $"{item.ToString()}\n";
+            }
+
+            return result;
         }
+
+
         internal IEnumerable<Vehicle> SortByColor(string color)
         {
-
-            var q = garage.Where(v => v?.Color == color);           
+            var q = garage.Where(v => v?.Color == color);
 
             return q;
-
         }
 
         internal IEnumerable<Vehicle> SortByNoOfWheels()
         {
-           
             var q = garage.OrderBy(v => v.NoOfWheels);
             return q;
         }
@@ -163,7 +178,7 @@ namespace Garage1._0
 
         internal bool ParkMotorcycle(string color, int noOfWheels, string regNo, int cylinderVolume)
         {
-           Motorcycle motorcycle= new Motorcycle(color, noOfWheels, regNo, cylinderVolume);
+            Motorcycle motorcycle = new Motorcycle(color, noOfWheels, regNo, cylinderVolume);
             if (garage.Add(motorcycle) == true)
                 return true;
             else return false;
@@ -171,7 +186,7 @@ namespace Garage1._0
 
         internal bool ParkBus(string color, int noOfWheels, string regNo, int noOfSeats)
         {
-            Bus bus=new Bus(color, noOfWheels, regNo, noOfSeats);
+            Bus bus = new Bus(color, noOfWheels, regNo, noOfSeats);
             if (garage.Add(bus) == true)
                 return true;
             else return false;
@@ -179,16 +194,16 @@ namespace Garage1._0
 
         internal bool ParkBoat(string color, int noOfWheels, string regNo, int length)
         {
-            Boat boat=new Boat(color, noOfWheels, regNo, length);
+            Boat boat = new Boat(color, noOfWheels, regNo, length);
             if (garage.Add(boat) == true)
                 return true;
             else return false;
         }
         internal void SeedData()
-        {           
+        {
             Airplane airplane = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky123", numberOfEngines: 2);
             garage.Add(airplane);
-            Motorcycle motorcycle = new Motorcycle(color: "black", noOfWheels: 2, regNo: "ACC900", cylinderVolume: 1000);
+            Motorcycle motorcycle = new Motorcycle(color: "black", noOfWheels: 3, regNo: "ACC900", cylinderVolume: 1000);
             garage.Add(motorcycle);
             Boat boat = new Boat(color: "white", noOfWheels: 0, regNo: "Sea111", length: 1);
             garage.Add(boat);
@@ -196,12 +211,14 @@ namespace Garage1._0
             Bus bus = new Bus(color: "green", noOfWheels: 4, regNo: "BUS001", numberOfSeats: 40);
             garage.Add(bus);
             garage.Add(airplane2);
-            Motorcycle motorcycle2 = new Motorcycle(color: "yellow", noOfWheels: 2, regNo: "ACC800", cylinderVolume: 850);
+            Motorcycle motorcycle2 = new Motorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC800", cylinderVolume: 850);
             garage.Add(motorcycle2);
             Car car = new Car(color: "red", noOfWheels: 4, regNo: "CAR001", fuelType: "gasoline");
             garage.Add(car);
-            Bus bus2 = new Bus(color: "green", noOfWheels: 4, regNo: "BUS002", numberOfSeats: 50);
+            Bus bus2 = new Bus(color: "yellow", noOfWheels: 4, regNo: "BUS002", numberOfSeats: 50);
             garage.Add(bus2);
+            Motorcycle motorcycle3 = new Motorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC700", cylinderVolume: 850);
+            garage.Add(motorcycle3);
         }
 
     }
