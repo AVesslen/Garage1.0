@@ -123,7 +123,7 @@ namespace Garage1._0
             IEnumerable<Vehicle> q = garage;
             if (!type.Equals("X"))
             {
-               q = q.Where(v => v.GetType().Name == type);
+               q = q.Where(v => v.GetType().Name.ToLower() == type);
             }
             if(color != "X")
             {

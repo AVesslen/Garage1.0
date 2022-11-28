@@ -208,42 +208,109 @@ namespace Garage1._0
 
             //4. Find vehicle by one or more properties
             string color = "";
-            string answer=ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
-            if (answer.ToLower() == "yes")
+            string type = "";
+            // type
+            bool isRunning = false;
+            string answer = ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
+            do
             {
-                //ui.Print("Select what type of vehicle you want to park:"
-                //+ "\n1. Airplane"
-                //+ "\n2. Motorcycle"
-                //+ "\n3. Car"
-                //+ "\n4. Bus"
-                //+ "\n5. Boat");
-
-                var vehicleTypes = new Dictionary<int, string> { { 1, "Airplane" }, { 2, "Motorcycle" } };    
-                                                               //{\n { 1, "Mia"},\n { 1002, "Oscar"},\n { 1003, "Birdie"},\n { 1004, "Bluey"},\n { 1005, "Leo"},\n { 1006, "Travis"}\n};
-
-                foreach (var types in vehicleTypes)
+                if (answer.ToLower() == "yes")
                 {
-                    ui.Print($"{types.Key}: {types.Value}");
+                    var vehicleTypes = new Dictionary<int, string>
+                {
+                    { 1, "airplane"},
+                    { 2, "motorcycle"},
+                    { 3, "car"},
+                    { 4, "bus"},
+                    { 5, "boat"}
+                };
+
+                    ui.Print("Select what type of vehicle you want to find (1, 2, 3, etc..)");
+
+                    foreach (var vehicleType in vehicleTypes)
+                    {
+                        ui.Print($"{vehicleType.Key}: {vehicleType.Value}");
+                    }
+
+                    int inputNumber = ui.GetIntInput("");
+                    while (inputNumber <= 0 || inputNumber > vehicleTypes.Count)
+                    {
+                        ui.Print("That was not a valid input, please enter a valid number 1, 2, 3, etc.)");
+                        inputNumber = ui.GetIntInput("");
+                    }
+                    type = vehicleTypes[inputNumber];
+                    isRunning = false;
                 }
 
-                int inputNumber = ui.GetIntInput("");
-                var type = vehicleTypes[inputNumber];
-                Console.WriteLine(type);
+                else if (answer.ToLower() == "no")
+                {
+                    type = "X";                 // Sets to -1 if user is not interested in this property
+                    isRunning = false;
+                }
+                else
+                {
+                    answer = ui.GetStringInput("That was not a valid input. Please enter yes/no.");
+                    isRunning = true;
+                }
 
-            }
-            else if (answer.ToLower() == "no")
-            {
-                color = "X";
-            }
-            else
-                ui.Print("That was not a valid input. Please enter yes/no.");
+            } while (isRunning == true);
             
+            // color
+            
+            answer = ui.GetStringInput("Do you want to find vehicle by color? (yes/no)");
+            do
+            {
+                if (answer.ToLower() == "yes")
+                {
+                    color = ui.GetStringInput("Enter color: ");
+                    isRunning = false;
+                }
 
-            //string output = handler.FindByProperty(type, color, noOfWheels);
-            //ui.Print($"Result:\n{output}");
+                else if (answer.ToLower() == "no")
+                {
+                    color = "X";                        // Sets to X if user is not interested in this property
+                    isRunning = false;
+                }
+                else
+                {
+                    answer=ui.GetStringInput("That was not a valid input. Please enter yes/no.");
+                    isRunning = true;
+                }
+            } while (isRunning == true);
 
-         
-           
+            // no of wheels
+            int noOfWheels = -1; 
+            answer = ui.GetStringInput("Do you want to find vehicle by no of wheels? (yes/no)");
+            do
+            {
+                if (answer.ToLower() == "yes")
+                {
+                    noOfWheels = ui.GetIntInput("Enter number of wheels: ");
+                    while (noOfWheels < 0)
+                    {
+                        noOfWheels = ui.GetIntInput("Please enter a non-negative number");
+                    }
+                    isRunning = false;
+                }
+
+                else if (answer.ToLower() == "no")
+                {
+                    noOfWheels = -1;           // Sets to -1 if user is not interested in this property
+                    isRunning = false;
+                }
+                else
+                {
+                    answer = ui.GetStringInput("That was not a valid input. Please enter yes/no.");
+                    isRunning = true;
+                }
+            } while (isRunning == true);
+
+
+           string foundVehicles = handler.FindByProperty(type, color, noOfWheels);
+           ui.Print($"This is the result of your search criteria:\n{foundVehicles}");
+
+
+
 
 
 
