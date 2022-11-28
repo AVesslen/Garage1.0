@@ -87,16 +87,23 @@ namespace Garage1._0
                 return;
             }
 
-            { 
-                string vehicleType = ui.GetStringInput("Select what type of vehicle you want to park:"
+            {
+                int validVehicles = 5;
+                int vehicleType = ui.GetIntInput("Select what type of vehicle you want to park:"
                 + "\n1. Airplane"
                 + "\n2. Motorcycle"
                 + "\n3. Car"
                 + "\n4. Bus"
                 + "\n5. Boat");
 
-                
+                while (vehicleType <= 0 || vehicleType > validVehicles)
+                {
+                    ui.Print("That was an invalid input, please enter a valid number 1, 2, 3, etc.");
+                    vehicleType = ui.GetIntInput("");
+                }
+
                 string color = ui.GetStringInput("Color: ");          // Asks for properties in base class
+                //ToDo validate neg numbers
                 int noOfWheels = ui.GetIntInput("Number of wheels: ");
 
                 string regNo;    // Checks if the reg.no allready exists. Every reg.no is uniqe and they can't be equal each other
@@ -113,36 +120,35 @@ namespace Garage1._0
                     
                 } while (isExisting == true) ;
                
-
-               
+                               
 
                 switch (vehicleType)            // Asks for properties in sub classes
                 {
-                    case "1":
+                    case 1:                      
                         int noOfEngines = ui.GetIntInput("Number of engines: ");
                        
                         if(handler.ParkAirplane(color, noOfWheels, regNo, noOfEngines)==true)
                                 ui.PrintAddSuceed();
                         break;
-                    case "2":
+                    case 2:
                         int cylinderVolume = ui.GetIntInput("Cylinder volume: ");
 
                         if (handler.ParkMotorcycle(color, noOfWheels, regNo, cylinderVolume) == true)
                             ui.PrintAddSuceed();
                         break;
-                    case "3":
+                    case 3:
                         string fuelType = ui.GetStringInput("Fuel type?: ");
 
                         if (handler.ParkCar(color, noOfWheels, regNo, fuelType) == true)
                             ui.PrintAddSuceed();
                         break;
-                    case "4":
+                    case 4:
                         int noOfSeats = ui.GetIntInput("Number of seats: ");
 
                         if (handler.ParkBus(color, noOfWheels, regNo, noOfSeats) == true)
                             ui.PrintAddSuceed();
                         break;
-                    case "5":
+                    case 5:
                         int length = ui.GetIntInput("Length: ");
 
                         if (handler.ParkBoat(color, noOfWheels, regNo, length) == true)
@@ -180,10 +186,6 @@ namespace Garage1._0
 
 
 
-
-
-
-
         private void SeeStatistics()
         {
            // //1. List all vehicles in the garage
@@ -200,9 +202,9 @@ namespace Garage1._0
            // ui.Print(typeAndNumber);
 
             //3. Find a vehicle by registration number          
-            string inputRegNo = ui.GetStringInput("Enter the registration number of the vehicle you want to find: ");
-            string vehicleFound = handler.FindVehicleByRegNo(inputRegNo);          
-            ui.Print(vehicleFound);
+            //string inputRegNo = ui.GetStringInput("Enter the registration number of the vehicle you want to find: ");
+            //string vehicleFound = handler.FindVehicleByRegNo(inputRegNo);          
+            //ui.Print(vehicleFound);
 
 
 

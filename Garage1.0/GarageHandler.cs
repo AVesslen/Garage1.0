@@ -109,7 +109,7 @@ namespace Garage1._0
 
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
             if (q.Count() == 0)    
-                isExisting = false;   // The reg.no is not allready defined at any of the vehicles
+                isExisting = false;   // False if reg.no is not allready defined at any of the vehicles
             else isExisting = true;
 
             return isExisting;

@@ -79,11 +79,7 @@ namespace Garage1._0
             }
             return result;
         }
-        
-        //internal bool Remove(int index)
-        //{
-        //    throw new NotImplementedException();
-        //}
+             
 
 
         public IEnumerator<T> GetEnumerator()
