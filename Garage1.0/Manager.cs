@@ -207,11 +207,42 @@ namespace Garage1._0
             //ui.Print(vehicleFound);
 
             //4. Find vehicle by one or more properties
-            string output = handler.FindByProperty("Motorcycle", "yellow", 3);
-            ui.Print($"Result:\n{output}");
+            string color = "";
+            string answer=ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
+            if (answer.ToLower() == "yes")
+            {
+                //ui.Print("Select what type of vehicle you want to park:"
+                //+ "\n1. Airplane"
+                //+ "\n2. Motorcycle"
+                //+ "\n3. Car"
+                //+ "\n4. Bus"
+                //+ "\n5. Boat");
 
-            //string type = "";
-            //Dictionary?
+                var vehicleTypes = new Dictionary<int, string> { { 1, "Airplane" }, { 2, "Motorcycle" } };    
+                                                               //{\n { 1, "Mia"},\n { 1002, "Oscar"},\n { 1003, "Birdie"},\n { 1004, "Bluey"},\n { 1005, "Leo"},\n { 1006, "Travis"}\n};
+
+                foreach (var types in vehicleTypes)
+                {
+                    ui.Print($"{types.Key}: {types.Value}");
+                }
+
+                int inputNumber = ui.GetIntInput("");
+                var type = vehicleTypes[inputNumber];
+                Console.WriteLine(type);
+
+            }
+            else if (answer.ToLower() == "no")
+            {
+                color = "X";
+            }
+            else
+                ui.Print("That was not a valid input. Please enter yes/no.");
+            
+
+            //string output = handler.FindByProperty(type, color, noOfWheels);
+            //ui.Print($"Result:\n{output}");
+
+         
            
 
 
