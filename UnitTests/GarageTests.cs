@@ -58,16 +58,16 @@ namespace UnitTests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void Remove_InputIsNull_Throws()
-        {
-            // Arrange
-            int capacity = 2;
-            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+        //[Fact]
+        //public void Remove_InputIsNull_Throws()
+        //{
+        //    // Arrange
+        //    int capacity = 2;
+        //    Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
 
-            // Act and Assert
-            //Assert.Throws<ArgumentNullException>(() => garage.Remove());
-        }
+        //    // Act and Assert
+        //    //Assert.Throws<ArgumentNullException>(() => garage.Remove());
+        //}
 
         [Fact]
         public void Remove_IndexNotValid_Throws()
@@ -78,8 +78,25 @@ namespace UnitTests
             int index = 5;
 
             // Act and Assert
-            Assert.Throws<ArgumentException>(() => garage.Remove(index));
+            Assert.Throws<ArgumentOutOfRangeException>(() => garage.Remove(index));
+        }
 
+        [Fact]
+        public void Remove_WhenSuccesfullyRemoved_ReturnTrue()
+        {
+            // Arrange
+            int capacity = 2;
+            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+            Boat boat = new Boat("white", 0, "SEA864", 32);
+            garage.Add(boat);
+            int index = 0;
+            bool expected = true;
+
+            // Act
+            bool actual=garage.Remove(index);
+
+            // Assert
+            Assert.Equal(expected, actual);
 
         }
 

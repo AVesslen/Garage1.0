@@ -81,12 +81,15 @@ namespace Garage1._0
             return GetEnumerator();
         }
 
-        public void Remove(int index)
+        public bool Remove(int index)
         {
                // ArgumentNullException.ThrowIfNull(index);
 
            if (index<0 || index>=NoOfVehiclesParked)
-                throw new ArgumentOutOfRangeException("The index was out of range");
+                throw new ArgumentOutOfRangeException();
+
+            vehicleArray[index] = null;
+            return true;
         }
     }
 }
