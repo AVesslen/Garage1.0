@@ -68,11 +68,17 @@ namespace Garage1._0
         {
             ui.Print("Welcome to this garage application. Let's create a garage!");
             int capacity = ui.GetIntInput("How many parking spaces do you need in your garage? ");
+            while (capacity <= 0)
+            {
+                capacity = ui.GetIntInput("The garage needs to have at least one parking space! Please try again!");
+            }
             handler.CreateGarage(capacity);
 
             string answer = ui.GetStringInput("Do you want the garage to be filled with some vehicles from start? (yes/no)");
             if (answer.ToLower() == "yes")
                 handler.SeedData();
+            while (answer.ToLower() != "yes" && answer.ToLower() != "no")
+                answer = ui.GetStringInput("That was not a valid input. Please enter yes/no.");
         }
               
         private string ShowMainMenu()
