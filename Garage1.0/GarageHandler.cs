@@ -42,9 +42,13 @@ namespace Garage1._0
         }
 
 
-        internal void UnparkVehicle(int index)
+        internal bool UnparkVehicle(int index)
         {
-            garage.Remove(index);
+            if (garage.Remove(index) == true)
+                return true;
+
+            else
+                return false;
         }
 
        

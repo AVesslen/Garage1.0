@@ -162,7 +162,6 @@ namespace Garage1._0
                 ui.Print("Sorry, you can't unpark any vehicle, because the garage is empty.");
                 return;
             }
-
            
             ui.Print("Which of the listed vehicles do you want to unpark? (1,2,3.. etc");  
             string vehiclesInGarage=handler.ListAllVehiclesInGarage(); 
@@ -175,8 +174,8 @@ namespace Garage1._0
                 inputNumber = ui.GetIntInput("");
             }
 
-            handler.UnparkVehicle(inputNumber - 1);  // Remove vehicle by index 
-
+            if (handler.UnparkVehicle(inputNumber - 1) == true)  // Remove vehicle by index 
+                ui.Print("Your vehicle was succesfully unparked!");
         }
 
 

@@ -60,6 +60,25 @@ namespace Garage1._0
             }
             return result;
         }      
+
+
+        public bool Remove(int index)
+        {
+            bool result;
+
+            if (index < 0 || index >= NoOfVehiclesParked)
+            {
+                throw new ArgumentOutOfRangeException();
+                result = false;
+            }
+            else
+            {
+            vehicleArray[index] = null;
+            NoOfVehiclesParked--;   
+            result= true;
+            }
+            return result;
+        }
         
         //internal bool Remove(int index)
         //{
@@ -81,15 +100,5 @@ namespace Garage1._0
             return GetEnumerator();
         }
 
-        public bool Remove(int index)
-        {
-               // ArgumentNullException.ThrowIfNull(index);
-
-           if (index<0 || index>=NoOfVehiclesParked)
-                throw new ArgumentOutOfRangeException();
-
-            vehicleArray[index] = null;
-            return true;
-        }
     }
 }
