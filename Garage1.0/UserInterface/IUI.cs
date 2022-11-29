@@ -6,5 +6,6 @@
         string GetStringInput(string message);
         void Print(string message);
         void PrintAddSuceed();
+        void PrintPropertyMessage(string type, string color, int noOfWheels);
     }
 }

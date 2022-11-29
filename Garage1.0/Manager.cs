@@ -210,6 +210,7 @@ namespace Garage1._0
             ui.Print("\nHere are the vehicles you have parked in the garage right now: \n");
             string vehiclesInGarage = handler.ListAllVehiclesInGarage();
             ui.Print(vehiclesInGarage);
+            ui.Print($"Number of empty parking spaces left in the garage is: {handler.GetNoOfSpacesLeft()}\n");
         }                   
 
         private void ListVehicleTypesAndCount()          // Lists vehicle types and how many of them
@@ -337,7 +338,8 @@ namespace Garage1._0
             } while (isRunning == true);
 
             string foundVehicles = handler.FindByProperty(type, color, noOfWheels);
-            ui.Print($"This is the result of your search criteria:\n{foundVehicles}");
+            ui.PrintPropertyMessage(type, color, noOfWheels);
+            ui.Print(foundVehicles);
         } 
     }
 }

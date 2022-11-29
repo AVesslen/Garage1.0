@@ -61,5 +61,17 @@ namespace Garage1._0.UserInterface
         {
             Console.WriteLine("Your vehicle was sucessfully parked in the garage!");
         }
+
+        public void PrintPropertyMessage(string type, string color, int noOfWheels)  // Prints a massage based on search criteria e.g. "All yellow motorcycles with 3 wheels"
+        {
+            Console.Clear();
+            string text = "Here is the result from your search criteria \"All ";
+            text += color == "X" ? "" :$"{color} ";
+            text += type == "X" ? "vehicles " : $"{type}s ";
+            text += noOfWheels == -1 ? "\".\n" : $"with {noOfWheels} wheels\"\n";
+            Console.WriteLine(text);
+        }
+
+
     }
 }

@@ -37,9 +37,15 @@ namespace Garage1._0
 
         public bool CheckIfFullGarage()
         {
-            return(garage.IsFull==true)? true:false;
-           
+            return(garage.IsFull==true)? true:false;            
         }
+
+        public int GetNoOfSpacesLeft()
+        {
+            return garage.NoOfSpacesLeft;
+
+        }
+
 
 
         public bool UnparkVehicle(int index)
