@@ -85,7 +85,7 @@ namespace Garage1._0
               
         private string ShowMainMenu()
         {
-           return ("Please select what you want to do with your garage"
+           return ("\nPlease select what you want to do with your garage"
             + "\n1. Park a vehicle"
             + "\n2. Unpark a vehicle"
             + "\n3. List all vehicles in the garage"
@@ -106,7 +106,7 @@ namespace Garage1._0
 
             {
                 int validVehicles = 5;
-                int vehicleType = ui.GetIntInput("Select what type of vehicle you want to park:"
+                int vehicleType = ui.GetIntInput("Select what type of vehicle you want to park: (1,2,3,..etc)"
                 + "\n1. Airplane"
                 + "\n2. Motorcycle"
                 + "\n3. Car"
@@ -120,8 +120,12 @@ namespace Garage1._0
                 }
 
                 string color = ui.GetStringInput("Color: ");          // Asks for properties in base class
-                //ToDo validate neg numbers
+                
                 int noOfWheels = ui.GetIntInput("Number of wheels: ");
+                while (noOfWheels < 0)
+                    {
+                        noOfWheels = ui.GetIntInput("Number of wheels can't be negative. Please try again!");
+                    }
 
                 string regNo;    // Checks if the reg.no allready exists. Every reg.no is uniqe and they can't be equal each other
                 bool isExisting = false;
@@ -217,6 +221,11 @@ namespace Garage1._0
 
         private void FindByRegNo()                       // Finds a vehicle by registration number   
         {
+            if (handler.CheckIfEmptyGarage() == true)
+            {
+                ui.Print("Sorry, you can't find any reg.no, because the garage is empty.");
+                return;
+            }
             string inputRegNo = ui.GetStringInput("Enter the registration number of the vehicle you want to find: ");
             string vehicleFound = handler.FindVehicleByRegNo(inputRegNo);
             ui.Print(vehicleFound);
@@ -224,9 +233,15 @@ namespace Garage1._0
 
         private void FindByProperties()                  // Finds vehicle(s) by one or more properties
         {
+            if (handler.CheckIfEmptyGarage() == true)
+            {
+                ui.Print("Sorry, you can't use any search criteria because the garage is empty.");
+                return;
+            }
+
             // type
             string type = "";
-            bool isRunning = false;
+            isRunning = false;
             string answer = ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
             do
             {

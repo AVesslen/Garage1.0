@@ -88,10 +88,13 @@ namespace Garage1._0
         public string FindVehicleByRegNo(string inputRegNo)
         {
             string result = "";
+            
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
 
             if (q.Count() == 0)
-                result = $"Sorry, could not find a vehicle with reg.no {inputRegNo}";
+            {
+                result = $"Sorry, could not find a vehicle with reg.no {inputRegNo}. ";                                   
+            }
 
             else
             {
@@ -125,11 +128,11 @@ namespace Garage1._0
             IEnumerable<Vehicle> q = garage;
             if (!type.Equals("X"))
             {
-                q = q.Where(v => v.GetType().Name.ToLower() == type);
+                q = q.Where(v => v.GetType().Name.ToLower() == type.ToLower());
             }
             if (color != "X")
             {
-                q = q.Where(v => v.Color == color);
+                q = q.Where(v => v.Color.ToLower() == color.ToLower());
             }
             if (noOfWheels != -1)
             {
@@ -187,7 +190,7 @@ namespace Garage1._0
                 return true;
             else return false;
         }
-        internal void SeedData()
+        public void SeedData()
         {
             Airplane airplane = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky123", numberOfEngines: 2);
             garage.Add(airplane);
@@ -195,10 +198,10 @@ namespace Garage1._0
             garage.Add(motorcycle);
             Boat boat = new Boat(color: "white", noOfWheels: 0, regNo: "Sea111", length: 1);
             garage.Add(boat);
-            Airplane airplane2 = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
+            Airplane airplane2 = new Airplane(color: "black", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
+            garage.Add(airplane2);
             Bus bus = new Bus(color: "green", noOfWheels: 4, regNo: "BUS001", numberOfSeats: 40);
             garage.Add(bus);
-            garage.Add(airplane2);
             Motorcycle motorcycle2 = new Motorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC800", cylinderVolume: 850);
             garage.Add(motorcycle2);
             Car car = new Car(color: "red", noOfWheels: 4, regNo: "CAR001", fuelType: "gasoline");

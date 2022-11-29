@@ -17,5 +17,6 @@
         bool ParkCar(string color, int noOfWheels, string regNo, string fuelType);
         bool ParkMotorcycle(string color, int noOfWheels, string regNo, int cylinderVolume);
         bool UnparkVehicle(int index);
+        void SeedData();
     }
 }
