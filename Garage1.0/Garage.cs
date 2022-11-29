@@ -15,8 +15,9 @@ namespace Garage1._0
         private readonly int capacity;
         private bool isFull;
 
-        private int noOfSpacesLeft;
+       
         public int NoOfVehiclesParked { get; private set; }=0;
+        public int NoOfSpacesLeft => vehicleArray.Length - NoOfVehiclesParked;
         public bool IsFull
         {
             get 
@@ -30,13 +31,7 @@ namespace Garage1._0
             }           
         }
 
-        public int NoOfSpacesLeft
-        {
-            get { return vehicleArray.Length - NoOfVehiclesParked; }            
-        }
-
-
-
+      
 
         public Garage(int capacity)
         {
