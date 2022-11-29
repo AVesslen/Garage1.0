@@ -58,16 +58,25 @@ namespace UnitTests
             Assert.Equal(expected, actual);
         }
 
-        //[Fact]
-        //public void Remove_InputIsNull_Throws()
-        //{
-        //    // Arrange
-        //    int capacity = 2;
-        //    Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
 
-        //    // Act and Assert
-        //    //Assert.Throws<ArgumentNullException>(() => garage.Remove());
-        //}
+        [Fact]
+        public void Add_IfVehicleAdded_NoOfVehiclesParkedShouldIncreaseByOne()
+        {
+            // Arrange
+            int capacity = 10;
+            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+            int expected = 1;
+
+            // Act
+            Boat boat = new Boat("white", 0, "SEA864", 32);
+            garage.Add(boat);
+            var actual = garage.NoOfVehiclesParked;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+
 
         [Fact]
         public void Remove_IndexNotValid_Throws()
@@ -87,8 +96,10 @@ namespace UnitTests
             // Arrange
             int capacity = 2;
             Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
+
             Boat boat = new Boat("white", 0, "SEA864", 32);
             garage.Add(boat);
+            
             int index = 0;
             bool expected = true;
 
@@ -97,11 +108,29 @@ namespace UnitTests
 
             // Assert
             Assert.Equal(expected, actual);
-
         }
 
+        [Fact]
+        public void Remove_IfVehicleRemoved_NoOfVehiclesParkedShouldDecreaseByOne()
+        {
+            // Arrange
+            int capacity = 10;           
+            Garage<Vehicle> garage = new Garage<Vehicle>(capacity);
 
-       
+            Boat boat = new Boat("white", 0, "SEA864", 32);
+            garage.Add(boat);
+            Airplane airPlane = new Airplane("grey", 3, "FLY465", 2);
+            garage.Add(airPlane);
+            
+            int expected = 1;
+
+            // Act
+            garage.Remove(0);
+            var actual = garage.NoOfVehiclesParked;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 
         
