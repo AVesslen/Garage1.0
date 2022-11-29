@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Garage1._0.UserInterface
 {
-    public class ConsoleUI //: IUI
+    public class ConsoleUI : IUI
+    
     {
         public string GetStringInput(string message)
         {
@@ -16,7 +17,7 @@ namespace Garage1._0.UserInterface
             do
             {
                 Print($"{message} ");
-                var input  = Console.ReadLine();
+                var input = Console.ReadLine();
                 if (input != null)
                     answer = input;
 

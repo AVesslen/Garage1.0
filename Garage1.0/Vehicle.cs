@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Garage1._0
 {
-    public abstract class Vehicle
+
+    public abstract class Vehicle : IVehicle
     {
         public string Color { get; set; }
         public int NoOfWheels { get; set; }
-     
+
         public string RegNo { get; set; }
 
-
-
-       // public Vehicle() : this("DefaultColor", 4,"NotRegistredYet") { }
 
         public Vehicle(string color, int noOfWheels, string regNo)
         {
@@ -26,7 +24,7 @@ namespace Garage1._0
 
         public override string ToString()
         {
-            return $"{this.GetType().Name}\tReg.no:{ RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}";
+            return $"{this.GetType().Name}\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}";
         }
     }
 
