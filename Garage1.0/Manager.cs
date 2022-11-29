@@ -12,10 +12,11 @@ namespace Garage1._0
 {
     public class Manager
     {
-        private readonly ConsoleUI ui; //senare IUI
-        private readonly GarageHandler handler; //senare IHandler
+        private readonly IUI ui; 
+        private readonly IHandler handler;
+        private bool isRunning;
 
-        public Manager(ConsoleUI ui, GarageHandler handler)
+        public Manager(IUI ui, IHandler handler)  //Senare IHandler ist för GarageHandler
         {
             this.ui = ui;
             this.handler = handler;
@@ -27,9 +28,10 @@ namespace Garage1._0
             Start();
         }       
       
-        public void Start()
+        private void Start()
         {           
-            bool isRunning = true;
+            isRunning = true;
+
             do
             {               
                 string input = ui.GetStringInput(ShowMainMenu());

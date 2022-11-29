@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace Garage1._0
 {
-    public class GarageHandler
+    public class GarageHandler : IHandler
     {
         public Garage<Vehicle> garage = null!;
 
+        public GarageHandler()
+        {
+
+        }
 
         public void CreateGarage(int capacity)
         {
@@ -20,7 +24,7 @@ namespace Garage1._0
             this.garage = garage;
         }
 
-        internal bool CheckIfEmptyGarage()
+        public bool CheckIfEmptyGarage()
         {
             if (garage.NoOfVehiclesParked == 0)
                 return true;
@@ -28,13 +32,13 @@ namespace Garage1._0
                 return false;
         }
 
-        internal int GetNoOfVehiclesParked()
+        public int GetNoOfVehiclesParked()
         {
             int amount = garage.NoOfVehiclesParked;
             return amount;
         }
 
-        internal bool CheckIfFullGarage()
+        public bool CheckIfFullGarage()
         {
             if (garage.IsFull == true) return true;
             else
@@ -42,7 +46,7 @@ namespace Garage1._0
         }
 
 
-        internal bool UnparkVehicle(int index)
+        public bool UnparkVehicle(int index)
         {
             if (garage.Remove(index) == true)
                 return true;
@@ -52,8 +56,7 @@ namespace Garage1._0
         }
 
 
-
-        internal string ListAllVehiclesInGarage()
+        public string ListAllVehiclesInGarage()
         {
             string result = "";
             int i = 1;
@@ -66,7 +69,7 @@ namespace Garage1._0
         }
 
 
-        internal string GetNoOfEachType()  // Groups vehicles by type and counts the number of each type 
+        public string GetNoOfEachType()  // Groups vehicles by type and counts the number of each type 
         {
             string result = "";
             var vehicleTypeList = garage.GroupBy(v => v.GetType().Name).Select(v => new
@@ -75,7 +78,6 @@ namespace Garage1._0
                 count = v.Count()
             }).ToList();
 
-
             foreach (var v in vehicleTypeList)
             {
                 result += $"{v.type}: {v.count}\n";
@@ -83,7 +85,7 @@ namespace Garage1._0
             return result;
         }
 
-        internal string FindVehicleByRegNo(string inputRegNo)
+        public string FindVehicleByRegNo(string inputRegNo)
         {
             string result = "";
             var q = garage.Where(v => v?.RegNo.ToUpper() == inputRegNo.ToUpper());
@@ -103,7 +105,7 @@ namespace Garage1._0
         }
 
 
-        internal bool CheckRegNoBeforeAdding(string inputRegNo)
+        public bool CheckRegNoBeforeAdding(string inputRegNo)
         {
             bool isExisting;
 
@@ -112,20 +114,20 @@ namespace Garage1._0
                 isExisting = false;   // False if reg.no is not allready defined at any of the vehicles
             else isExisting = true;
 
+
             return isExisting;
         }
 
 
-
-        internal string FindByProperty(string type, string color, int noOfWheels)
+        public string FindByProperty(string type, string color, int noOfWheels)
         {
             string result = "";
             IEnumerable<Vehicle> q = garage;
             if (!type.Equals("X"))
             {
-               q = q.Where(v => v.GetType().Name.ToLower() == type);
+                q = q.Where(v => v.GetType().Name.ToLower() == type);
             }
-            if(color != "X")
+            if (color != "X")
             {
                 q = q.Where(v => v.Color == color);
             }
@@ -144,22 +146,8 @@ namespace Garage1._0
         }
 
 
-        internal IEnumerable<Vehicle> SortByColor(string color)
-        {
-            var q = garage.Where(v => v?.Color == color);
 
-            return q;
-        }
-
-        internal IEnumerable<Vehicle> SortByNoOfWheels()
-        {
-            var q = garage.OrderBy(v => v.NoOfWheels);
-            return q;
-        }
-
-
-
-        internal bool ParkAirplane(string color, int noOfWheels, string regNo, int numberOfEngines)
+        public bool ParkAirplane(string color, int noOfWheels, string regNo, int numberOfEngines)
         {
             Airplane airplane = new Airplane(color, noOfWheels, regNo, numberOfEngines);
             if (garage.Add(airplane) == true)
@@ -168,7 +156,7 @@ namespace Garage1._0
         }
 
 
-        internal bool ParkCar(string color, int noOfWheels, string regNo, string fuelType)
+        public bool ParkCar(string color, int noOfWheels, string regNo, string fuelType)
         {
             Car car = new Car(color, noOfWheels, regNo, fuelType);
             if (garage.Add(car) == true)
@@ -176,7 +164,7 @@ namespace Garage1._0
             else return false;
         }
 
-        internal bool ParkMotorcycle(string color, int noOfWheels, string regNo, int cylinderVolume)
+        public bool ParkMotorcycle(string color, int noOfWheels, string regNo, int cylinderVolume)
         {
             Motorcycle motorcycle = new Motorcycle(color, noOfWheels, regNo, cylinderVolume);
             if (garage.Add(motorcycle) == true)
@@ -184,7 +172,7 @@ namespace Garage1._0
             else return false;
         }
 
-        internal bool ParkBus(string color, int noOfWheels, string regNo, int noOfSeats)
+        public bool ParkBus(string color, int noOfWheels, string regNo, int noOfSeats)
         {
             Bus bus = new Bus(color, noOfWheels, regNo, noOfSeats);
             if (garage.Add(bus) == true)
@@ -192,7 +180,7 @@ namespace Garage1._0
             else return false;
         }
 
-        internal bool ParkBoat(string color, int noOfWheels, string regNo, int length)
+        public bool ParkBoat(string color, int noOfWheels, string regNo, int length)
         {
             Boat boat = new Boat(color, noOfWheels, regNo, length);
             if (garage.Add(boat) == true)

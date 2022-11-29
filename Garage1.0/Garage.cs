@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Garage1._0
 {
-    public class Garage<T> : IEnumerable<T> where T : Vehicle  //Senare IVehicle
+    public class Garage<T> : IEnumerable<T> where T : IVehicle  
     {
 
         private T[] vehicleArray;
@@ -29,11 +29,7 @@ namespace Garage1._0
             }
             //set { isFull = value; }
         }
-
-        //public override string ToString()
-        //{
-        //    return this.ToString();    
-        //}
+     
 
         public Garage(int capacity)
         {
