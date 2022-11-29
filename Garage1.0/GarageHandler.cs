@@ -24,25 +24,21 @@ namespace Garage1._0
             this.garage = garage;
         }
 
-        public bool CheckIfEmptyGarage()
-        {
-            if (garage.NoOfVehiclesParked == 0)
-                return true;
-            else
-                return false;
-        }
-
         public int GetNoOfVehiclesParked()
         {
             int amount = garage.NoOfVehiclesParked;
             return amount;
         }
 
+        public bool CheckIfEmptyGarage()
+        {          
+            return (garage.NoOfVehiclesParked==0)? true:false;
+        }
+
         public bool CheckIfFullGarage()
         {
-            if (garage.IsFull == true) return true;
-            else
-                return false;
+            return(garage.IsFull==true)? true:false;
+           
         }
 
 
@@ -190,27 +186,21 @@ namespace Garage1._0
                 return true;
             else return false;
         }
+
         public void SeedData()
         {
-            Airplane airplane = new Airplane(color: "grey", noOfWheels: 3, regNo: "Sky123", numberOfEngines: 2);
-            garage.Add(airplane);
-            Motorcycle motorcycle = new Motorcycle(color: "black", noOfWheels: 3, regNo: "ACC900", cylinderVolume: 1000);
-            garage.Add(motorcycle);
-            Boat boat = new Boat(color: "white", noOfWheels: 0, regNo: "Sea111", length: 1);
-            garage.Add(boat);
-            Airplane airplane2 = new Airplane(color: "black", noOfWheels: 3, regNo: "Sky222", numberOfEngines: 2);
-            garage.Add(airplane2);
-            Bus bus = new Bus(color: "green", noOfWheels: 4, regNo: "BUS001", numberOfSeats: 40);
-            garage.Add(bus);
-            Motorcycle motorcycle2 = new Motorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC800", cylinderVolume: 850);
-            garage.Add(motorcycle2);
-            Car car = new Car(color: "red", noOfWheels: 4, regNo: "CAR001", fuelType: "gasoline");
-            garage.Add(car);
-            Bus bus2 = new Bus(color: "yellow", noOfWheels: 4, regNo: "BUS002", numberOfSeats: 50);
-            garage.Add(bus2);
-            Motorcycle motorcycle3 = new Motorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC700", cylinderVolume: 850);
-            garage.Add(motorcycle3);
+            ParkBoat(color: "white", noOfWheels: 0, regNo: "SEA001", length: 32);
+            ParkAirplane(color: "grey", noOfWheels: 3, regNo: "SKY123", numberOfEngines: 2);            
+            ParkMotorcycle(color: "black", noOfWheels: 3, regNo: "ACC900", cylinderVolume: 1000);            
+            ParkBoat(color: "red", noOfWheels: 0, regNo: "SEA002", length: 25);
+            ParkCar(color: "white", noOfWheels: 4, regNo: "CAR001", fuelType: "gasoline");            
+            ParkAirplane(color: "black", noOfWheels: 3, regNo: "SKY222", numberOfEngines: 1);
+            ParkBus(color: "green", noOfWheels: 4, regNo: "BUS001", noOfSeats: 40);          
+            ParkMotorcycle(color: "yellow", noOfWheels: 2, regNo: "ACC800", cylinderVolume: 850);            
+            ParkCar(color: "red", noOfWheels: 4, regNo: "XGA492", fuelType: "gasoline");
+            ParkCar(color: "black", noOfWheels: 4, regNo: "CAR002", fuelType: "electric");
+            ParkBus(color: "yellow", noOfWheels: 4, regNo: "BUS002", noOfSeats: 50);         
+            ParkMotorcycle(color: "yellow", noOfWheels: 3, regNo: "ACC700", cylinderVolume: 900);            
         }
-
     }
 }

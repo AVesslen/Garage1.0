@@ -235,7 +235,7 @@ namespace Garage1._0
         {
             if (handler.CheckIfEmptyGarage() == true)
             {
-                ui.Print("Sorry, you can't use any search criteria because the garage is empty.");
+                ui.Print("Sorry, you can't use any search criteria  because the garage is empty.");
                 return;
             }
 
