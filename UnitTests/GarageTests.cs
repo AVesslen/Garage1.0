@@ -111,7 +111,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Remove_IfVehicleRemoved_NoOfVehiclesParkedShouldDecreaseByOne()
+        public void Remove_IfVehicleRemoved_NoOfVehiclesParked_ShouldDecreaseByOne()
         {
             // Arrange
             int capacity = 10;           

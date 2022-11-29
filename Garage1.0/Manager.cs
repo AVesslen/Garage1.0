@@ -276,7 +276,7 @@ namespace Garage1._0
 
                 else if (answer.ToLower() == "no")
                 {
-                    type = "X";                 // Sets to -1 if user is not interested in this property
+                    type = "X";                 // Sets to X if user is not interested in this property
                     isRunning = false;
                 }
                 else
