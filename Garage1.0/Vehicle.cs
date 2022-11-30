@@ -87,7 +87,7 @@ namespace Garage1._0
         }
         public override string ToString()
         {
-            return $"{this.GetType().Name}\t\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}\tNumberOfSeats:{NumberOfSeats}";
+            return $"{this.GetType().Name}\t\tReg.no:{RegNo}\tColor:{Color}\tNo of wheels:{NoOfWheels}\tNo of seats:{NumberOfSeats}";
         }
     }
 

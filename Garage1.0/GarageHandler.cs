@@ -196,7 +196,7 @@ namespace Garage1._0
         public void SeedData()
         {
             ParkBoat(color: "white", noOfWheels: 0, regNo: "SEA001", length: 32);
-            ParkAirplane(color: "white", noOfWheels: 3, regNo: "SKY123", numberOfEngines: 2);            
+            ParkAirplane(color: "red", noOfWheels: 3, regNo: "SKY123", numberOfEngines: 2);            
             ParkMotorcycle(color: "black", noOfWheels: 3, regNo: "ACC900", cylinderVolume: 1000);            
             ParkBoat(color: "red", noOfWheels: 0, regNo: "SEA002", length: 25);
             ParkCar(color: "white", noOfWheels: 4, regNo: "CAR001", fuelType: "diesel");            

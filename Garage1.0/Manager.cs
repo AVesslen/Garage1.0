@@ -216,7 +216,7 @@ namespace Garage1._0
 
         private void ListVehicleTypesAndCount()          // Lists vehicle types and how many of them
         {            
-            ui.Print("Number of each vehicle:\n");
+            ui.Print("Number of each vehicle type:\n");
             string typeAndNumber = handler.GetNoOfEachType();
             ui.Print(typeAndNumber);
         }
