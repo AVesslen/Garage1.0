@@ -14,9 +14,9 @@ namespace Garage1._0
     {
         private readonly IUI ui; 
         private readonly IHandler handler;
-        private bool isRunning;
+        private bool inProgress;
 
-        public Manager(IUI ui, IHandler handler)  //Senare IHandler ist för GarageHandler
+        public Manager(IUI ui, IHandler handler)  
         {
             this.ui = ui;
             this.handler = handler;
@@ -30,7 +30,7 @@ namespace Garage1._0
       
         private void Start()
         {           
-            isRunning = true;
+            inProgress = true;
 
             do
             {               
@@ -57,13 +57,13 @@ namespace Garage1._0
                         FindByProperties();
                         break;
                     case "Q":
-                       isRunning = false;
+                       inProgress = false;
                         break;
                     default:
                         ui.Print("Please enter some valid input (1, 2, 3, 4, 5, 6 or Q");
                         break;
                 }
-            } while (isRunning==true);
+            } while (inProgress==true);
         }
 
         private void Initialize()
@@ -77,10 +77,11 @@ namespace Garage1._0
             handler.CreateGarage(capacity);
 
             string answer = ui.GetStringInput("Do you want the garage to be filled with some vehicles from start? (yes/no)");
-            if (answer.ToLower() == "yes")
-                handler.SeedData();
             while (answer.ToLower() != "yes" && answer.ToLower() != "no")
                 answer = ui.GetStringInput("That was not a valid input. Please enter yes/no.");
+
+            if (answer.ToLower() == "yes")
+                handler.SeedData();
         }
               
         private string ShowMainMenu()
@@ -242,7 +243,7 @@ namespace Garage1._0
 
             // type
             string type = "";
-            isRunning = false;
+            bool isRunning = false;
             string answer = ui.GetStringInput("Do you want to find vehicle by type? (yes/no)");
             do
             {
